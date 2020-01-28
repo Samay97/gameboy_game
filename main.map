@@ -341,30 +341,30 @@ AREA _SFR
 		_SVBK_REG	FF70
 		_IE_REG	FFFF
 MODULES
-	FILE C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/crt0.o
+	FILE C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE main.o
-		NAME lcc73840
+		NAME lcc1400
 LIBRARIES
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE sfr.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE pad.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE delay.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gbz80/gbz80.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE printf.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gbz80/gbz80.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gbz80/gbz80.lib
 		MODULE div.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE font.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE ibmfixed.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE drawing.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE init_tt.o
-	LIBRARY C:\Users\sknoch\Desktop\GB\gbdk\lib/small/asxxxx/gb/gb.lib
+	LIBRARY C:\Users\sknoch\Desktop\test\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE cpy_data.o
 USERBASEDEF
 	_CODE=0x0200
