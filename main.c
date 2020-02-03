@@ -1,7 +1,28 @@
 #include <stdio.h>
 #include <gb/gb.h>
+#include "sprites/smiler.h"
+
+UINT8 currentSpriteIndex = 0;
+
+void showCharacter() {
+    set_sprite_data(0, 2, TileLabel);
+    set_sprite_tile(0 ,0);
+    move_sprite(0, 80, 80);
+    SHOW_SPRITES;
+}
 
 void main() {
+    while (1)
+    {
+        if (currentSpriteIndex == 0) {
+            currentSpriteIndex = 1;
+        } else {
+            currentSpriteIndex = 0;
+        }
+        set_sprite_tile(0, currentSpriteIndex);
+        delay(500);
+    }
+    
     while(1) {
         switch(joypad()) {
             case J_LEFT:
