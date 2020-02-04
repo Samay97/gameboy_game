@@ -1,0 +1,8 @@
+gbdk/
+
+# Ignore Build files
+*.gb
+*.lst
+*.o
+*.sym
+*.map
