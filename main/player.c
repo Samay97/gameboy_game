@@ -3,38 +3,51 @@
 #include "utils.c"
 #include "../main.h"
 
-INT8 playerlocation[2]; // stores two INT8 x and y postion of player
-BYTE isJumping;
-UINT8 currentspeedY;
+struct GameCharacter {
+    UBYTE spriteId[4];
+    UINT8 x;
+    UINT8 y;
+    UINT8 height;
+    UINT8 width; 
+    BYTE isJumping;
+    UINT8 currentspeedY;
+};
 
-void movePlayerLeft() {
-    playerlocation[0] = playerlocation[0] - 2;
-    move_sprite(0, playerlocation[0], playerlocation[1]);
+void moveGameCharacter(struct GameCharacter* character, UINT8 x, UINT8 y) {
+    move_sprite(character->spriteId[0], x, y);
+    move_sprite(character->spriteId[1], x + spriteSize, y);
+    move_sprite(character->spriteId[2], x, y + spriteSize);
+    move_sprite(character->spriteId[3], x + spriteSize, y + spriteSize);
 }
 
-void movePlayerRight() {
-    playerlocation[0] = playerlocation[0] + 2;
-    move_sprite(0, playerlocation[0], playerlocation[1]);
+void movePlayerLeft(struct GameCharacter* player) {
+    player->x = player->x - 2;
+    moveGameCharacter(player, player->x, player->y);
 }
 
-void jumpPlayer(UINT8 spriteid, UINT8 spritelocation[2]){
+void movePlayerRight(struct GameCharacter* player) {
+    player->x = player->x + 2;
+    moveGameCharacter(player, player->x, player->y);
+}
+
+void jumpPlayer(struct GameCharacter* player){
     UINT8 possibleSurfaceY;
 
-    if(isJumping == 0){
-        isJumping = 1;
-        currentspeedY = 10;
+    if(player->isJumping == 0){
+        player->isJumping = 1;
+        player->currentspeedY = 10;
     }
 
     // work out current speed - effect of gravities accelleration down
-    currentspeedY = currentspeedY + gravity;    
+    player->currentspeedY = player->currentspeedY + gravity;    
 
-    spritelocation[1] = spritelocation[1] - currentspeedY;
-    possibleSurfaceY = wouldHitSurface(spritelocation[1]);
+    player->y = player->y - player->currentspeedY;
+    possibleSurfaceY = wouldHitSurface(player->y);
     if(possibleSurfaceY != -1){
-        isJumping = 0;
-        move_sprite(spriteid,spritelocation[0], possibleSurfaceY);
+        player->isJumping = 0;
+        moveGameCharacter(player, player->x, possibleSurfaceY);
     }
     else{
-        move_sprite(spriteid,spritelocation[0], spritelocation[1]);
+        moveGameCharacter(player, player->x, player->y);
     }
 }

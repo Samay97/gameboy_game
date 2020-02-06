@@ -5,4 +5,6 @@
 
 extern UINT8 floorY;
 extern UINT8 gravity;
+extern UINT8 spriteSize;
+
 #endif
