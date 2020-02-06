@@ -1,42 +1,25 @@
 #include <stdio.h>
 #include <gb/gb.h>
-#include "sprites/smiler.c"
+#include "Sprites/background1.c"
+#include "Sprites/backgroundtiles.c"
+#include "Sprites/background2.c"
+
 
 void main() {
-    while(1) {
-        switch(joypad()) {
-            case J_LEFT:
-                printf("Left!\n");
-                delay(100);
-                break;
-            case J_RIGHT:
-                printf("Right!\n");
-                delay(100);
-                break;
-            case J_UP:
-                printf("Up!\n");
-                delay(100);
-                break;
-            case J_DOWN:
-                printf("Down!\n");
-                delay(100);
-                break;
-            case J_START:
-                printf("Start!\n");
-                delay(100);
-                break;
-            case J_SELECT:
-                printf("Select!\n");
-                delay(100);
-                break;
-            case J_A:
-                printf("A!\n");
-                delay(100);
-                break;
-            case J_B:
-                printf("B!\n");
-                delay(100);
-                break;
-        }
+            
+    set_bkg_data(0, 5, backgroundtiles);
+    set_bkg_tiles(0, 0, 32, 19, backgroundmap1);
+    
+    set_bkg_tiles(0, 14, 32, 19, backgroundmap2);
+
+    SHOW_BKG;
+    DISPLAY_ON;
+    
+    while(1)
+    {    
+        scroll_bkg(1, 0);
+           
+        delay(20);
+
     }
 }
