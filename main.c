@@ -1,14 +1,10 @@
 #include <stdio.h>
 #include <gb/gb.h>
 #include "main.h"
-<<<<<<< HEAD
-=======
-#include "sprites/flamingo.c"
->>>>>>> add 4 sprites for player moved functions to clean main
 #include "main/player.c"
 #include "main/utils.h"
 // Sprites
-#include "sprites/smiler.c"
+#include "sprites/flamingo.c"
 #include "Sprites/background1.c"
 #include "Sprites/backgroundtiles.c"
 #include "Sprites/background2.c"
@@ -17,7 +13,7 @@ struct GameCharacter player;
 UBYTE spriteSize = 8;
 
 // Set global varibales
-UINT8 floorY = 100;
+UINT8 floorY = 88;
 UINT8 gravity = -2;
 
 void setupGameCharacter() {
@@ -52,6 +48,7 @@ void main() {
     player.isJumping = 0;
 
     DISPLAY_ON;
+    SHOW_BKG;
     SHOW_SPRITES;
 
     while(1) {

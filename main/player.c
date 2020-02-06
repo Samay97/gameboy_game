@@ -35,7 +35,7 @@ void jumpPlayer(struct GameCharacter* player){
 
     if(player->isJumping == 0){
         player->isJumping = 1;
-        player->currentspeedY = 10;
+        player->currentspeedY = 12;
     }
 
     // work out current speed - effect of gravities accelleration down
