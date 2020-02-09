@@ -3,6 +3,7 @@
 #include "main.h"
 #include "main/player.c"
 #include "main/utils.h"
+#include "main/gamemaster.c"
 // Sprites
 #include "sprites/flamingo.c"
 #include "Sprites/background1.c"
@@ -35,24 +36,39 @@ void setupGameCharacter() {
     // Init Player location
     moveGameCharacter(&player, player.x, player.y);
 }
- 
-void main() {
-    // Background
-    set_bkg_data(0, 5, backgroundtiles);
+
+void setupBackground() {
+    // Fonts blocking from 0-37
+    set_bkg_data(38, 5, backgroundtiles);
     set_bkg_tiles(0, 0, 32, 19, backgroundmap1);    
     set_bkg_tiles(0, 14, 32, 19, backgroundmap2);
+}
+ 
+void main() {
+    //load font
+    loadFont();
+    // Background
+    setupBackground();
+    // Window
+    setupWindow();
 
     // Player
     set_sprite_data(0, 4, Flamingo);
     setupGameCharacter();
     player.isJumping = 0;
 
-    DISPLAY_ON;
+    
+    SHOW_WIN;
     SHOW_BKG;
     SHOW_SPRITES;
 
+    DISPLAY_ON;
+
+    startGame();
+
     while(1) {
         scroll_bkg(1, 0);
+        drawscore();
         
         if((joypad() & J_A) || player.isJumping == 1){
             jumpPlayer(&player);
