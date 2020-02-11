@@ -16,20 +16,21 @@ void loadFont() {
     min_font = font_load(font_min);
     font_set(min_font);
 	loadedFont = min_font;
-	return;
 }
 
 void setupWindow() {
-	// set_win_tiles(0, 0, 5, 1, windowmapstart);
+	set_win_tiles(0, 0, 5, 1, windowmapstart);
 	move_win(10, 127);
 }
 
 void startGame() {
     waitpad(J_START);
-    // set_win_tiles(0, 0, 5, 1, windowmapscore);
+	delay(300);
+    set_win_tiles(0, 0, 5, 1, windowmapscore);
 	laststarttime = sys_time;
 }
 
+// Counter does not work on every game start. Try to reload the game
 void drawscore(){
 	UINT8 score[1] = {12};
 	UINT8 digitmap[1];
