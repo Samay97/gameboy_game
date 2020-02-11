@@ -6,7 +6,7 @@
 #include "main/gamemaster.c"
 #include "main/obstacle.c"
 // Sprites
-#include "sprites/flamingo.c"
+#include "Sprites/flamingo.c"
 #include "Sprites/background1.c"
 #include "Sprites/backgroundtiles.c"
 #include "Sprites/background2.c"
@@ -31,18 +31,15 @@ void setupGameobstacle(){
     // load sprites for Busch
     set_sprite_tile(5, 5);
     obstacle.spriteId[0]=5;
-
 }
 
 void moveBusch(){
-
     move_sprite(obstacle.spriteId[0], obstacle.x, obstacle.y);  
-
 }
 
-void IncreaseSpeed(){
+void increaseSpeed(){
     SpeedIncrease++;
-    if(SpeedIncrease >= 100){
+    if(SpeedIncrease >= 80){
         SpeedIncrease = 0;
         Speed++;
     }
@@ -65,8 +62,7 @@ void setupGameCharacter() {
     player.spriteId[3] = 3;
 
     // Init Player location
-    moveGameCharacter(&player, player.x, player.y);
-    
+    moveGameCharacter(&player, player.x, player.y);  
 }
 
 void setupBackground() {
@@ -124,9 +120,10 @@ void main() {
         obstacle.x -= Speed;
 
         moveBusch(obstacle.x , obstacle.y);
-        IncreaseSpeed();
+        increaseSpeed();
 
         performantDelay(5);
     }
 
+    gameover();
 }

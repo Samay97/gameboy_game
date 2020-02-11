@@ -30,6 +30,11 @@ void startGame() {
 	laststarttime = sys_time;
 }
 
+void gameover(){
+	set_win_tiles(0, 0, 10, 1, windowmapend);
+
+}
+
 // Counter does not work on every game start. Try to reload the game
 void drawscore(){
 	UINT8 score[1] = {12};
