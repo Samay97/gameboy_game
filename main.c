@@ -3,11 +3,8 @@
 #include "main.h"
 #include "main/player.c"
 #include "main/utils.h"
-<<<<<<< HEAD
 #include "main/gamemaster.c"
-=======
 #include "main/obstacle.c"
->>>>>>> Collision
 // Sprites
 #include "sprites/flamingo.c"
 #include "Sprites/background1.c"
@@ -97,33 +94,20 @@ void main() {
     setupGameCharacter();
     player.isJumping = 0;
 
-<<<<<<< HEAD
+    // Busch
+    set_sprite_data(5, 1, busch);
+    setupGameobstacle();
     
     SHOW_WIN;
     SHOW_BKG;
     SHOW_SPRITES;
-
     DISPLAY_ON;
 
     startGame();
 
-    while(1) {
-        scroll_bkg(1, 0);
-        drawscore();
-=======
-    // Busch
-    set_sprite_data(5, 1, busch);
-    setupGameobstacle();
-
-
-    DISPLAY_ON;
-    SHOW_BKG;
-    SHOW_SPRITES;
-
-
     while(!checkcollisions(&player, &obstacle)) {
         scroll_bkg(3, 0);
->>>>>>> Collision
+        drawscore();
         
         if((joypad() & J_A) || player.isJumping == 1){
             jumpPlayer(&player);
