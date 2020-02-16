@@ -4,18 +4,46 @@
 #include "main/player.c"
 #include "main/utils.h"
 #include "main/gamemaster.c"
+#include "main/obstacle.c"
 // Sprites
-#include "sprites/flamingo.c"
+#include "Sprites/flamingo.c"
 #include "Sprites/background1.c"
 #include "Sprites/backgroundtiles.c"
 #include "Sprites/background2.c"
+#include "Sprites/Busch.c"
 
+struct Gameobstacle obstacle;
 struct GameCharacter player;
 UBYTE spriteSize = 8;
+UINT8 Speed = 5;
+UINT16 SpeedIncrease = 0;
 
 // Set global varibales
 UINT8 floorY = 88;
 UINT8 gravity = -2;
+
+void setupGameobstacle(){
+    obstacle.x = 140;
+    obstacle.y = 96;
+    obstacle.width = 16;
+    obstacle.height = 16;    
+
+    // load sprites for Busch
+    set_sprite_tile(5, 5);
+    obstacle.spriteId[0]=5;
+}
+
+void moveBusch(){
+    move_sprite(obstacle.spriteId[0], obstacle.x, obstacle.y);  
+}
+
+void increaseSpeed(){
+    SpeedIncrease++;
+    if(SpeedIncrease >= 80){
+        SpeedIncrease = 0;
+        Speed++;
+    }
+}
 
 void setupGameCharacter() {
     player.x = 10;
@@ -34,7 +62,7 @@ void setupGameCharacter() {
     player.spriteId[3] = 3;
 
     // Init Player location
-    moveGameCharacter(&player, player.x, player.y);
+    moveGameCharacter(&player, player.x, player.y);  
 }
 
 void setupBackground() {
@@ -44,6 +72,11 @@ void setupBackground() {
     set_bkg_tiles(0, 14, 32, 19, backgroundmap2);
 }
  
+UBYTE checkcollisions(struct GameCharacter* one, struct Gameobstacle* two){
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+} 
+
+
 void main() {
     //load font
     loadFont();
@@ -57,17 +90,19 @@ void main() {
     setupGameCharacter();
     player.isJumping = 0;
 
+    // Busch
+    set_sprite_data(5, 1, busch);
+    setupGameobstacle();
     
     SHOW_WIN;
     SHOW_BKG;
     SHOW_SPRITES;
-
     DISPLAY_ON;
 
     startGame();
 
-    while(1) {
-        scroll_bkg(1, 0);
+    while(!checkcollisions(&player, &obstacle)) {
+        scroll_bkg(3, 0);
         drawscore();
         
         if((joypad() & J_A) || player.isJumping == 1){
@@ -82,6 +117,13 @@ void main() {
             movePlayerRight(&player);
         }
 
+        obstacle.x -= Speed;
+
+        moveBusch(obstacle.x , obstacle.y);
+        increaseSpeed();
+
         performantDelay(5);
     }
+
+    gameover();
 }
