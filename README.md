@@ -1,16 +1,22 @@
 # gameboy_game
 
-## Build
+## programm bauen
 
-To Build the game please download [GBDK](https://sourceforge.net/projects/gbdk/files/).
-Copy it to this project directory an run:
+Um das Spiel zu bauen benötigt man den Download [GBDK](https://sourceforge.net/projects/gbdk/files/).
+Kopier den Ordner in den Root dieses Projectes und führe folgenden Befehl aus:
 
 ```
 ./make.bat
 ```
 
+## Spielen
 
-Anwenderdokumentation:
+Um das Spiel zu staten muss der Build-Prozess abgeschlossen sein, so dass eine `main.gb` Datei existiert.
+Man kann nun den Emulator [bgb](http://bgb.bircd.org/) starten. Mit rechts klick auf das geöffnete Programm
+wählt man den Punkt `Load ROM` aus und wählt die `main.gb` Datei. Nun wird das Spiel gelanden.
+
+
+# Anwenderdokumentation:
 
 Das Spiel beginnt mit einem Startbildschirm.
 Wird die Enter-Taste gedrückt beginnt das Spiel.
@@ -22,3 +28,6 @@ Die Steuerung beschränkt sich auf die Pfeiltasten um sich nach links und rechts
 Landet man früher oder später dann unglücklich in einem Dornenbusch, kommt ein Game Over screen mit dem Punktestand.
 
 Ziel des Spiels ist es so lange wie möglich zu überleben und einen möglichst hohen Punktestand zu bekommen.
+
+## Known BUG´s
+- Der Score wird nicht immer Angezeigt beim ausführen des Spiels. Durch erneutes laden wird dieses wieder angezeit.
